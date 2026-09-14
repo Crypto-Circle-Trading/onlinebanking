@@ -1,14 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BTC Withdraw Online Banking</title>
+<title>BTC Withdraw Online Banking — Account</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -18,18 +16,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: #f5f5f5;
   min-height: 100vh;
-
   background:
-    radial-gradient(
-      circle at 80% 10%,
-      rgba(240,185,11,0.12),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 10% 90%,
-      rgba(240,185,11,0.06),
-      transparent 32%
-    ),
+    radial-gradient(circle at 80% 10%, rgba(240,185,11,0.12), transparent 32%),
+    radial-gradient(circle at 10% 90%, rgba(240,185,11,0.06), transparent 32%),
     #0b0e11;
 }
 
@@ -173,7 +162,9 @@ h1 {
   margin-bottom: 25px;
 }
 
-.back {
+/* BUTTONS */
+
+.button {
   display: inline-block;
   background: #f0b90b;
   color: #111111;
@@ -181,11 +172,136 @@ h1 {
   padding: 13px 22px;
   border-radius: 7px;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 5px;
 }
 
-.back:hover {
+.button:hover {
   background: #f8d33a;
 }
+
+.button.secondary {
+  background: #2b2f36;
+  color: #ffffff;
+}
+
+.button.secondary:hover {
+  background: #3a3f48;
+}
+
+/* PAYMENT SLIP */
+
+.payment-slip {
+  display: none;
+  margin-top: 25px;
+  padding: 25px;
+  background: #101318;
+  border: 1px solid #f0b90b;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.payment-slip.show {
+  display: block;
+}
+
+.slip-title {
+  text-align: center;
+  color: #f0b90b;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.demo-label {
+  text-align: center;
+  color: #ffcc00;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.slip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 0;
+  border-bottom: 1px solid #2b2f36;
+}
+
+.slip-row:last-of-type {
+  border-bottom: none;
+}
+
+.slip-label {
+  color: #848e9c;
+  font-size: 14px;
+}
+
+.slip-value {
+  color: #ffffff;
+  font-weight: bold;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* DEPOSIT INFORMATION */
+
+.deposit-box {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(240,185,11,0.07);
+  border: 1px solid rgba(240,185,11,0.25);
+  border-radius: 8px;
+}
+
+.deposit-title {
+  color: #f0b90b;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.bank-row {
+  padding: 12px 0;
+  border-bottom: 1px solid #2b2f36;
+}
+
+.bank-row:last-child {
+  border-bottom: none;
+}
+
+.bank-label {
+  display: block;
+  color: #848e9c;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.bank-value {
+  display: block;
+  color: #ffffff;
+  font-weight: bold;
+  word-break: break-word;
+}
+
+/* WARNING */
+
+.warning {
+  margin-top: 20px;
+  padding: 13px;
+  background: rgba(255,170,0,0.08);
+  border: 1px solid rgba(255,170,0,0.25);
+  border-radius: 7px;
+  color: #d1d5db;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* NOTICE */
 
 .notice {
   margin-top: 25px;
@@ -227,14 +343,28 @@ h1 {
     font-size: 25px;
   }
 
-}
+  .slip-row {
+    flex-direction: column;
+    gap: 5px;
+  }
 
+  .slip-value {
+    text-align: left;
+  }
+
+  .button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- =========================================
+     HEADER
+     ========================================= -->
 
 <div class="header">
 
@@ -242,7 +372,9 @@ h1 {
 
     <div class="brand">
 
-      <div class="logo">₿</div>
+      <div class="logo">
+        ₿
+      </div>
 
       <div>
 
@@ -251,7 +383,7 @@ h1 {
         </div>
 
         <div class="brand-subtitle">
-          Account
+          ACCOUNT
         </div>
 
       </div>
@@ -271,7 +403,9 @@ h1 {
 </div>
 
 
-<!-- MAIN -->
+<!-- =========================================
+     MAIN
+     ========================================= -->
 
 <div class="container">
 
@@ -281,40 +415,343 @@ h1 {
       ↓
     </div>
 
+
     <h1>
       Withdraw Unavailable
     </h1>
 
+
     <div class="description">
-      You are required to have a transfer fee of
+
+      **TRANSFER PROCESSING NOTICE**
+
+Your transfer is currently pending and requires completion of the applicable processing requirement before it can be finalized.
+
+Transaction Status: Pending
+Processing Requirement: Simulated Transfer Processing Fee
+
+Once the requirement has been satisfied, the transaction may proceed to the next stage of processing.
+
+This notice is provided for demonstration purposes only and does not constitute an actual bank fee, payment demand, or financial institution notice.
+
       <strong>$150</strong>.
+
     </div>
+
 
     <div class="fee">
       $150.00
     </div>
 
+
     <div class="status">
-      This fee requirement is part of this
-      simulated account demonstration.
+
+      TRANSACTION FEE NOTICE
+
+A transaction processing fee of $150.00 is applicable to this transaction, subject to the terms and conditions of the account.
+
+Fee Amount: $150.00
+Fee Status: Outstanding
+Transaction Status: Pending
+
+Please use only the payment method and instructions provided through the financial institution's official banking channels. Verify the fee and beneficiary details with the institution before making any payment.
     </div>
 
+
+    <button
+      class="button"
+      onclick="showPaymentSlip()">
+
+      View Account Payment Slip
+
+    </button>
+
+
     <a
-      class="back"
+      class="button secondary"
       href="index.html">
 
       ← Return to Dashboard
 
     </a>
 
+
+    <!-- =========================================
+         PAYMENT SLIP
+         ========================================= -->
+
+    <div
+      id="paymentSlip"
+      class="payment-slip">
+
+
+      <div class="slip-title">
+        PAYMENT SLIP
+      </div>
+
+
+      <div class="demo-label">
+        PAYMENT NOTICE
+
+Payment Required — $150.00
+
+Please complete the applicable payment through the financial institution's authorized payment channel. Verify the transaction details and recipient information before submitting payment.
+
+      </div>
+
+
+      <div class="slip-row">
+
+        <div class="slip-label">
+          Slip Number
+        </div>
+
+        <div class="slip-value">
+          AMMOUNT-150
+        </div>
+
+      </div>
+
+
+      <div class="slip-row">
+
+        <div class="slip-label">
+          Description
+        </div>
+
+        <div class="slip-value">
+          Withdrawal Unlock Fee
+        </div>
+
+      </div>
+
+
+      <div class="slip-row">
+
+        <div class="slip-label">
+          Amount
+        </div>
+
+        <div class="slip-value">
+          $150.00
+        </div>
+
+      </div>
+
+
+      <div class="slip-row">
+
+        <div class="slip-label">
+          Status
+        </div>
+
+        <div class="slip-value">
+          Demo / Training
+        </div>
+
+      </div>
+
+
+      <!-- =========================================
+            BANK INFORMATION
+           ========================================= -->
+
+      <div class="deposit-box">
+
+        <div class="deposit-title">
+          Account Deposit Information
+        </div>
+
+
+        <div class="bank-row">
+
+          <span class="bank-label">
+            Account Holder
+          </span>
+
+          <span class="bank-value">
+            Betina Guter
+          </span>
+
+        </div>
+
+
+        <div class="bank-row">
+
+          <span class="bank-label">
+            IBAN
+          </span>
+
+          <span class="bank-value">
+            DE59 6729 2200 0007 5423 05
+          </span>
+
+        </div>
+
+
+        <div class="bank-row">
+
+          <span class="bank-label">
+            Valid Until
+          </span>
+
+          <span class="bank-value">
+            12/29
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =========================================
+           ACCOUNT WARNING
+           ========================================= -->
+
+      <div class="warning">
+
+        ⚠️ <strong>ACCOUNTU / TRAINING ONLY</strong><br><br>
+
+        **PAYMENT NOTICE**
+
+Please review the payment information and transaction details carefully before initiating any transfer. Payments should only be made through verified and authorized financial channels. If you have any concerns regarding the payment instructions, contact the relevant financial institution before proceeding.
+
+
+      </div>
+
+
+      <button
+        class="button secondary"
+        onclick="hidePaymentSlip()"
+        style="margin-top:20px;">
+
+        Close Slip
+
+      </button>
+
+
+    </div>
+
+
     <div class="notice">
-      Account — withdrawals are not available
-      in this simulated environment.
+
+      WITHDRAWAL STATUS
+
+Withdrawals are currently unavailable for this account. Please contact the relevant financial institution or account administrator for further information regarding withdrawal availability.
+
     </div>
 
   </div>
 
 </div>
 
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
+<script>
+
+function showPaymentSlip() {
+
+  document
+    .getElementById("paymentSlip")
+    .classList.add("show");
+
+}
+
+
+function hidePaymentSlip() {
+
+  document
+    .getElementById("paymentSlip")
+    .classList.remove("show");
+
+}
+
+</script>
+
 </body>
 </html>
+```
+```html
+<!-- WITHDRAWAL FEE PAYMENT DETAILS -->
+
+<div class="payment-slip show">
+
+  <div class="slip-title">
+    WITHDRAWAL FEE PAYMENT DETAILS
+  </div>
+
+  <div class="demo-label">
+    ACCOUNT / TRAINING ENVIRONMENT
+  </div>
+
+  <div class="slip-row">
+    <div class="slip-label">
+      Withdrawal Fee
+    </div>
+
+    <div class="slip-value">
+      $150.00
+    </div>
+  </div>
+
+  <div class="slip-row">
+    <div class="slip-label">
+      Payment Status
+    </div>
+
+    <div class="slip-value">
+      Pending Account Payment
+    </div>
+  </div>
+
+  <div class="deposit-box">
+
+    <div class="deposit-title">
+      Payment Account Information
+    </div>
+
+    <div class="bank-row">
+      <span class="bank-label">
+        Account Holder
+      </span>
+
+      <span class="bank-value">
+        Betina Guter
+      </span>
+    </div>
+
+    <div class="bank-row">
+      <span class="bank-label">
+        IBAN
+      </span>
+
+      <span class="bank-value">
+        DE59 6729 2200 0007 5423 05
+      </span>
+    </div>
+
+    <div class="bank-row">
+      <span class="bank-label">
+        Valid Until
+      </span>
+
+      <span class="bank-value">
+        12/29
+      </span>
+    </div>
+
+  </div>
+
+  <div class="warning">
+    ⚠️ ACCOUNT / TRAINING ONLY<br><br>
+    PAYMENT INFORMATION NOTICE
+
+Please verify all payment details before initiating a transaction. Payments should only be made through authorized financial channels and in accordance with the applicable transaction terms and conditions.
+
+  </div>
+
+</div>
