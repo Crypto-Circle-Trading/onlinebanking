@@ -1,0 +1,297 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recent Activity - My Online Bank Prototype</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.header {
+  background: #111827;
+  color: white;
+  padding: 18px 20px;
+}
+
+.header-inner {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.dashboard {
+  background: white;
+  color: #111827;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.search {
+  width: 100%;
+  padding: 13px;
+  margin: 15px 0 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.activity {
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.activity:last-child {
+  border-bottom: none;
+}
+
+.activity-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.activity-title {
+  font-weight: bold;
+}
+
+.amount {
+  color: #15803d;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.details {
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px 10px;
+  color: #6b7280;
+}
+
+.note {
+  margin-top: 20px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+@media(max-width: 600px) {
+  .activity-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+  <div class="header-inner">
+
+    <h1>My Online Bank</h1>
+
+    <button
+      class="dashboard"
+      onclick="location.href='index.html'">
+      Dashboard
+    </button>
+
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="card">
+
+    <h2>Recent Activity</h2>
+
+    <input
+      class="search"
+      id="searchBox"
+      type="text"
+      placeholder="Search transactions..."
+      oninput="displayActivities()"
+    >
+
+    <div id="activityList"></div>
+
+  </div>
+
+  <div class="note">
+    Prototype activity only — no real financial transactions are processed.
+  </div>
+
+</div>
+
+<script>
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+function displayActivities() {
+
+  const activityList =
+    document.getElementById("activityList");
+
+  const search =
+    document.getElementById("searchBox")
+      .value
+      .toLowerCase();
+
+  const activities =
+    JSON.parse(
+      localStorage.getItem("activities")
+    ) || [];
+
+  const filtered =
+    activities.filter(function(activity) {
+
+      return (
+        String(activity.type)
+          .toLowerCase()
+          .includes(search) ||
+
+        String(activity.amount)
+          .toLowerCase()
+          .includes(search) ||
+
+        String(activity.status)
+          .toLowerCase()
+          .includes(search) ||
+
+        String(activity.date)
+          .toLowerCase()
+          .includes(search)
+      );
+
+    });
+
+  if (filtered.length === 0) {
+
+    activityList.innerHTML =
+      '<div class="empty">' +
+      'No matching prototype transactions.' +
+      '</div>';
+
+    return;
+  }
+
+  activityList.innerHTML = "";
+
+  filtered.forEach(function(activity) {
+
+    const row =
+      document.createElement("div");
+
+    row.className = "activity";
+
+    const amount =
+      Number(activity.amount).toLocaleString(
+        "en-IE",
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      );
+
+    row.innerHTML =
+      '<div class="activity-top">' +
+
+        '<div>' +
+
+          '<div class="activity-title">' +
+            escapeHTML(activity.type) +
+          '</div>' +
+
+          '<div class="details">' +
+            'Date: ' +
+            escapeHTML(activity.date) +
+          '</div>' +
+
+        '</div>' +
+
+        '<div class="amount">' +
+          '+€' + amount +
+        '</div>' +
+
+      '</div>' +
+
+      '<span class="status">' +
+        escapeHTML(activity.status) +
+      '</span>';
+
+    activityList.appendChild(row);
+
+  });
+
+}
+
+displayActivities();
+
+</script>
+
+</body>
+</html>
+```

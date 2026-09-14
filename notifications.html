@@ -1,0 +1,173 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications - My Online Bank Prototype</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.header {
+  background: #111827;
+  color: white;
+  padding: 18px 20px;
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.dashboard-btn {
+  background: white;
+  color: #111827;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 750px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.notification {
+  padding: 18px;
+  margin-bottom: 15px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 4px solid #374151;
+}
+
+.notification:last-of-type {
+  margin-bottom: 0;
+}
+
+.notification h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.notification p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.demo-label {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #6b7280;
+}
+
+.note {
+  margin-top: 25px;
+  padding: 15px;
+  background: #f9fafb;
+  border-radius: 8px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="header-inner">
+
+    <h1>My Online Bank</h1>
+
+    <button class="dashboard-btn"
+      onclick="window.location.href='index.html'">
+      Dashboard
+    </button>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="title">
+      <h2>Notifications</h2>
+      <p>Sample prototype alerts</p>
+    </div>
+
+    <div class="notification">
+      <h3>Welcome to the Prototype</h3>
+      <p>
+        You have successfully signed in to the demonstration account.
+      </p>
+      <span class="demo-label">PROTOTYPE ALERT</span>
+    </div>
+
+    <div class="notification">
+      <h3>Sample Activity Recorded</h3>
+      <p>
+        A sample deposit is displayed in your prototype transaction history.
+      </p>
+      <span class="demo-label">SAMPLE DATA</span>
+    </div>
+
+    <div class="notification">
+      <h3>Demo Account Active</h3>
+      <p>
+        This account is part of a prototype interface and does not process real financial transactions.
+      </p>
+      <span class="demo-label">DEMO ONLY</span>
+    </div>
+
+    <div class="note">
+      This notifications page contains fictional prototype messages only.
+      No real financial alerts or banking services are provided.
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
+```

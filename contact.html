@@ -1,0 +1,187 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact - My Online Bank Prototype</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.header {
+  background: #111827;
+  color: white;
+  padding: 18px 20px;
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.dashboard-btn {
+  background: white;
+  color: #111827;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 650px;
+  margin: 45px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+textarea {
+  height: 130px;
+  resize: vertical;
+}
+
+button.submit-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 7px;
+  background: #111827;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #15803d;
+}
+
+.note {
+  margin-top: 25px;
+  padding: 15px;
+  background: #f9fafb;
+  border-radius: 8px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="header-inner">
+
+    <h1>My Online Bank</h1>
+
+    <button class="dashboard-btn"
+      onclick="window.location.href='index.html'">
+      Dashboard
+    </button>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="title">
+      <h2>Contact Us</h2>
+      <p>Send a message to prototype support</p>
+    </div>
+
+    <form onsubmit="sendMessage(event)">
+
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" required></textarea>
+
+      <button class="submit-btn" type="submit">
+        Send Message
+      </button>
+
+    </form>
+
+    <div class="message" id="successMessage"></div>
+
+    <div class="note">
+      This is a prototype contact form. Messages are not currently sent or stored.
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function sendMessage(event) {
+  event.preventDefault();
+
+  document.getElementById("successMessage").textContent =
+    "Demo message submitted successfully.";
+
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("message").value = "";
+}
+</script>
+
+</body>
+</html>
+```
